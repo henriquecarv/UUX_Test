@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using PagedList;
 using PaginationTest.DAL;
+using PaginationTest.Models;
 using System.Web.Mvc;
 
 namespace PaginationTest.Controllers
@@ -10,12 +8,13 @@ namespace PaginationTest.Controllers
     public class ProductController : Controller
     {
         // GET: ProductList
-        public ActionResult ProductList()
+        public ActionResult ProductList(int page = 1, int pageSize = 10)
         {
-
             var products = MockProductDao.GetAllProducts();
 
-            return View(products);
+            PagedList<Product> model = new PagedList<Product>(products, page, pageSize);
+
+            return View(model);
         }
     }
 }

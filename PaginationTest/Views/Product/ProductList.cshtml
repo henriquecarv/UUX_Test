@@ -1,62 +1,68 @@
 ﻿@using PaginationTest.Models;
-@model  List<Product>
-@{
-    ViewBag.Title = "ProductList";
-}
-
-<style>
-    table {
-        text-align: center;
+@using PagedList;
+@using PagedList.Mvc;
+    @model  IPagedList<Product>
+    @{
+        ViewBag.Title = "ProductList";
     }
 
-    thead {
-        text-align-last: center;
-    }
-</style>
-
-<h2>ProductList</h2>
-
-<table id="paginationTest" class="table table-bordered table-striped" cellspacing="0">
-    <thead>
-        <tr>
-            <th rowspan="2" style="vertical-align: middle">Id</th>
-            <th rowspan="2" style="vertical-align: middle">Name</th>
-            <th rowspan="2" style="vertical-align: middle">Price</th>
-            <th colspan="2">Categories</th>
-            <th rowspan="2" style="vertical-align: middle">Tags</th>
-        </tr>
-        <tr>
-            <th>Category 1</th>
-            <th>Category 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in Model)
-        {
-            if (!product.IsDisabled)
-            {
-                <tr>
-                    <td>@product.Id</td>
-                    <td>@product.Name</td>
-                    <td>@product.Price</td>
-                    <td>
-                        @product.Categories.First().Name
-                    </td>
-                    <td>
-                        @if (product.Categories.Count() > 1)
-                        {
-                            @product.Categories.Last().Name
-                        }
-                    </td>
-                    <td>
-                        @foreach (var tag in @product.Tags)
-                        {
-                            @tag
-                            <br>
-                        }
-                    </td>
-                </tr>
-            }
+    <style>
+        table {
+            text-align: center;
         }
-    </tbody>
-</table>
+
+        thead {
+            text-align-last: center;
+        }
+    </style>
+
+    <h2>ProductList</h2>
+
+    <table id="paginationTest" class="table table-bordered table-striped" cellspacing="0">
+        <thead>
+            <tr>
+                <th rowspan="2" style="vertical-align: middle">Id</th>
+                <th rowspan="2" style="vertical-align: middle">Name</th>
+                <th rowspan="2" style="vertical-align: middle">Price</th>
+                <th colspan="2">Categories</th>
+                <th rowspan="2" style="vertical-align: middle">Tags</th>
+            </tr>
+            <tr>
+                <th>Category 1</th>
+                <th>Category 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                if (!product.IsDisabled)
+                {
+                    <tr>
+                        <td>@product.Id</td>
+                        <td>@product.Name</td>
+                        <td>@product.Price</td>
+                        <td>
+                            @product.Categories.First().Name
+                        </td>
+                        <td>
+                            @if (product.Categories.Count() > 1)
+                            {
+                                @product.Categories.Last().Name
+                            }
+                        </td>
+                        <td>
+                            @foreach (var tag in @product.Tags)
+                            {
+                                @tag
+                                <br>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="text-center">
+        @Html.PagedListPager(Model, page => Url.Action("ProductList", new { page, pageSize = Model.PageSize }))
+        Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
+    </div>
