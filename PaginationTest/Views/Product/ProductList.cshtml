@@ -4,16 +4,30 @@
     ViewBag.Title = "ProductList";
 }
 
+<style>
+    table {
+        text-align: center;
+    }
+
+    thead {
+        text-align-last: center;
+    }
+</style>
+
 <h2>ProductList</h2>
 
-<table class="table table-bordered table-striped" cellspacing="0">
+<table id="paginationTest" class="table table-bordered table-striped" cellspacing="0">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Tag</th>
+            <th rowspan="2" style="vertical-align: middle">Id</th>
+            <th rowspan="2" style="vertical-align: middle">Name</th>
+            <th rowspan="2" style="vertical-align: middle">Price</th>
+            <th colspan="2">Categories</th>
+            <th rowspan="2" style="vertical-align: middle">Tags</th>
+        </tr>
+        <tr>
+            <th>Category 1</th>
+            <th>Category 2</th>
         </tr>
     </thead>
     <tbody>
@@ -26,24 +40,23 @@
                     <td>@product.Name</td>
                     <td>@product.Price</td>
                     <td>
-                        <ul>
-                            @foreach (var category in @product.Categories)
-                            {
-                                <li>@category.Name</li>
-                            }
-                        </ul>
+                        @product.Categories.First().Name
                     </td>
                     <td>
-                        <ul>
-                            @foreach (var tag in @product.Tags)
-                            {
-                                <li>@tag</li>
-                            }
-                        </ul>
+                        @if (product.Categories.Count() > 1)
+                        {
+                            @product.Categories.Last().Name
+                        }
+                    </td>
+                    <td>
+                        @foreach (var tag in @product.Tags)
+                        {
+                            @tag
+                            <br>
+                        }
                     </td>
                 </tr>
             }
         }
     </tbody>
 </table>
-
