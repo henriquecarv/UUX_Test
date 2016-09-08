@@ -30,3 +30,24 @@ table {
 thead {
     text-align-last: center !important;
 }
+
+table.tablesorter thead tr .tablesorter-headerUnSorted {
+    background-image: url(Images/bg.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+
+table.tablesorter thead tr .tablesorter-headerAsc {
+    background-image: url(Images/asc.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+
+table.tablesorter thead tr .tablesorter-headerDesc {
+    background-image: url(Images/desc.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
