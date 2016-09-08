@@ -14,6 +14,8 @@ namespace PaginationTest
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryTableSorterWidgets", "https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.6/js/jquery.tablesorter.widgets.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryUI", "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -30,7 +32,9 @@ namespace PaginationTest
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/jqueryUI", "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.css"));
+
             BundleTable.EnableOptimizations = true;
-        }        
+        }
     }
 }
