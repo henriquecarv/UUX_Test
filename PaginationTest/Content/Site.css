@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+table {
+    text-align: center !important;
+}
+
+thead {
+    text-align-last: center !important;
+}

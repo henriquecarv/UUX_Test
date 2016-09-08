@@ -7,8 +7,12 @@ namespace PaginationTest
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            bundles.UseCdn = true;
+            bundles.Add(new ScriptBundle("~/bundles/jquery", "https://code.jquery.com/jquery-2.2.4.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryTableSorter", "https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.6/js/jquery.tablesorter.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryTableSorterWidgets", "https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.6/js/jquery.tablesorter.widgets.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -25,6 +29,8 @@ namespace PaginationTest
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
-        }
+
+            BundleTable.EnableOptimizations = true;
+        }        
     }
 }
