@@ -1,6 +1,6 @@
 # UUX C# Junior Developer Test
 
-## Sumary
+## Summary
 The following test intends to validate desirable and mandatory technical background.
 
 The candidate will start with a Visual Studio Web Project using a default template with 4.5 .Net Framework and MVC Architecture.
